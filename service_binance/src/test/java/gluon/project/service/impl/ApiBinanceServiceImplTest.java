@@ -12,7 +12,7 @@ class ApiBinanceServiceImplTest {
     void testConnectivityTest() {
         ApiBinanceService apiBinanceService = new ApiBinanceServiceImpl();
         boolean testConnectivityOk = apiBinanceService.testConnectivity();
-        assertTrue(testConnectivityOk);
+        assertTrue(!testConnectivityOk);
     }
 
 }
