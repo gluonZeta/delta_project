@@ -33,7 +33,11 @@ public class ApiBinanceServiceImpl implements ApiBinanceService {
             logger.atInfo().log(this.httpResponse.body());
             logger.atInfo().log(this.httpResponse.headers().toString());
 
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
+            throw new RequestSendException(e);
+        } catch (InterruptedException e) {
+            logger.atWarn().log("Iterrupted!", e);
+            Thread.currentThread().interrupt();
             throw new RequestSendException(e);
         }
 
