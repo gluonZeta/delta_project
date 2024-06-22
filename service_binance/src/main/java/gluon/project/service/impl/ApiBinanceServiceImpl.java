@@ -1,5 +1,6 @@
 package gluon.project.service.impl;
 
+import gluon.project.myexceptions.RequestSendException;
 import gluon.project.service.ApiBinanceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +34,7 @@ public class ApiBinanceServiceImpl implements ApiBinanceService {
             logger.atInfo().log(this.httpResponse.headers().toString());
 
         } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
+            throw new RequestSendException(e);
         }
 
         return this.httpResponse.body().equals("{}");
