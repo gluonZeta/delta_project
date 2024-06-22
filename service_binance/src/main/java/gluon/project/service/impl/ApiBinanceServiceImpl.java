@@ -29,8 +29,9 @@ public class ApiBinanceServiceImpl implements ApiBinanceService {
         this.httpClient = HttpClient.newHttpClient();
         try {
             this.httpResponse = this.httpClient.send(this.httpRequest, HttpResponse.BodyHandlers.ofString());
-            logger.info(this.httpResponse.body());
-            logger.info(this.httpResponse.headers().toString());
+            logger.atInfo().log(this.httpResponse.body());
+            logger.atInfo().log(this.httpResponse.headers().toString());
+
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
