@@ -20,7 +20,7 @@ public class ApiBinanceServiceImpl implements ApiBinanceService {
     HttpResponse<String> httpResponse;
 
     @Override
-    public boolean testConnectivity() {
+    public boolean isConnectionOk() {
         String testConnectivityUrl = "https://api.binance.com/api/v3/ping";
 
         this.httpRequest = HttpRequest

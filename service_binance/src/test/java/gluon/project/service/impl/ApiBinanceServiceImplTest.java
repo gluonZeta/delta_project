@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class ApiBinanceServiceImplTest {
 
     @Test
-    void testConnectivityTest() {
+    void isConnectionOk_test() {
         ApiBinanceService apiBinanceService = new ApiBinanceServiceImpl();
-        boolean testConnectivityOk = apiBinanceService.testConnectivity();
+        boolean testConnectivityOk = apiBinanceService.isConnectionOk();
         assertTrue(testConnectivityOk);
     }
 
