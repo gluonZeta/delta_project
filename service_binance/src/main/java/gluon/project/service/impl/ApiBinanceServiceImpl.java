@@ -35,7 +35,6 @@ public class ApiBinanceServiceImpl implements ApiBinanceService {
             throw new RuntimeException(e);
         }
 
-        if(this.httpResponse.body().equals("{}")) return true;
-        else return false;
+        return this.httpResponse.body().equals("{}");
     }
 }
