@@ -1,5 +1,6 @@
 package gluon.project.service.impl;
 
+import gluon.project.myexceptions.RequestSendException;
 import gluon.project.service.ApiBinanceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,10 +30,15 @@ public class ApiBinanceServiceImpl implements ApiBinanceService {
         this.httpClient = HttpClient.newHttpClient();
         try {
             this.httpResponse = this.httpClient.send(this.httpRequest, HttpResponse.BodyHandlers.ofString());
-            logger.info(this.httpResponse.body());
-            logger.info(this.httpResponse.headers().toString());
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
+            logger.atInfo().log(this.httpResponse.body());
+            logger.atInfo().log(this.httpResponse.headers().toString());
+
+        } catch (IOException e) {
+            throw new RequestSendException(e);
+        } catch (InterruptedException e) {
+            logger.atWarn().log("Iterrupted!", e);
+            Thread.currentThread().interrupt();
+            throw new RequestSendException(e);
         }
 
         return this.httpResponse.body().equals("{}");
